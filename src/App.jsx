@@ -7,12 +7,22 @@ import Home from './pages/Home/Home'
 function App() {
 
   const isAuthenticated = true
+
+  function loginRedirect(componente) {
+    if (isAuthenticated) {
+      return <Navigate to='/' replace />
+    }
+
+    return componente
+  }
+
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/login' Component={Signin} />
-          <Route path='/cadastro' Component={Signup} />
+          <Route path='/login' element={loginRedirect(<Signin />)} />
+          <Route path='/cadastro' element={loginRedirect(<Signup />)} />          
+
           {isAuthenticated ?
             (
               <>
