@@ -1,32 +1,30 @@
-import { useEffect, useState } from 'react'
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
-import { getUsers } from './services/web'
+import Signin from './pages/Signin/Signin'
+import Signup from './pages/Signup/Signup'
 
 function App() {
 
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    // EXECUTA ALGO NO INICIO DO COMPONENTE
-    console.log('componente iniciado App.jsx')
-    async function fetchData() {
-      const response = await getUsers()
-      console.log(response)
-      setUsers(response)
-    }
-    fetchData();
-  }, [])
-
   return (
     <>
-      <ul>
-        {users.map(user => 
-          <li key={user.id}>{user.name} ({user.email})</li>
-        )}
-        {/* <li>Nome (email)</li> */}
-        {/* <li>Yan Esteves (yan.m.esteves@gmail.com)</li>
-        <li>Joao Coelho (joao.coelho@gmail.com)</li> */}
-      </ul>
+      <Router> {/* switch */}
+        <Routes>
+          <Route path='/' Component={Signin} />
+          <Route path='/login' Component={Signin} />
+          <Route path='/cadastro' Component={Signup} />
+            {/*             
+
+
+         ROTAS
+         localhost/home -> globo.com/home
+
+          - rota /home pages/Home
+          - rota / pages/Home     
+          - rota /configuracoes pages/Configuracoes
+          - rota /login pages/Login              
+         */}
+        </Routes>
+      </Router>
     </>
   )
 }
