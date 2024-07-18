@@ -1,32 +1,33 @@
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom'
 import './App.css'
 import Signin from './pages/Signin/Signin'
 import Signup from './pages/Signup/Signup'
+import Home from './pages/Home/Home'
 
 function App() {
 
+  const isAuthenticated = true
   return (
     <>
-      <Router> {/* switch */}
+      <Router>
         <Routes>
-          <Route path='/' Component={Signin} />
           <Route path='/login' Component={Signin} />
           <Route path='/cadastro' Component={Signup} />
-            {/*             
-
-
-         ROTAS
-         localhost/home -> globo.com/home
-
-          - rota /home pages/Home
-          - rota / pages/Home     
-          - rota /configuracoes pages/Configuracoes
-          - rota /login pages/Login              
-         */}
+          {isAuthenticated ?
+            (
+              <>
+                <Route path='/' Component={Home} />
+              </>
+            )
+            : (
+              <>
+                <Route path='*' element={<Navigate replace to='/login' />} />
+              </>              
+            )
+          }
         </Routes>
       </Router>
     </>
   )
 }
-
 export default App
