@@ -1,7 +1,33 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { passLogin } from '../../services/login';
+import './Signin.css'
+
 function Signin() {
+
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+
+    const navigate = useNavigate();  
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        if (email === 'admin@admin.com' && senha === 'admin123') {
+            // redireciona para a home
+            navigate('/home')
+            return
+        }
+
+        alert('Email e/ou senha incorretos')
+    }
+    
     return (
         <>
-            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <input type="email" placeholder='E-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="password" placeholder='Senha' value={senha} onChange={(e) => setSenha(e.target.value)} />
+                <button type='submit'>Entrar</button>
+            </form>
         </>
     )
 }
