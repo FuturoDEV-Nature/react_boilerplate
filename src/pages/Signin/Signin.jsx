@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { passLogin } from '../../services/login';
 import './Signin.css'
 
 function Signin() {
