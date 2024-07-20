@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 function Bicicletas() {
     return (
         <>
-            {/* <Header />
-            <Sidebar /> */}
+            <div className="content">
+                <h1>Bicicletas</h1>
+                <Link to='/'>Home</Link>
+            </div>
 
-            <h1>Bicicletas</h1>
-            <Link to='/'>Home</Link>            
         </>
     )
 }

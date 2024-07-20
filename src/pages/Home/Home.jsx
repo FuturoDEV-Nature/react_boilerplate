@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom"
-// import Sidebar from "../../components/Sidebar/Sidebar"
 
 function Home() {
     return (
         <>
-            {/* <Header />
-            <Sidebar /> */}
+            <div className="content">
+                <h1>Home</h1>
 
-            <h1>Home</h1>
-
-            <Link to='/bicicletas'>Bicicletas</Link>
+                <Link to='/bicicletas'>Bicicletas</Link>
+            </div>
         </>
     )
 }

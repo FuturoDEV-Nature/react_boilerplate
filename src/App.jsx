@@ -1,45 +1,30 @@
-import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Sidebar from "./components/Sidebar/Sidebar"
+import Header from "./components/Header/Header"
 import './App.css'
-import Signin from './pages/Signin/Signin'
-import Signup from './pages/Signup/Signup'
-import Home from './pages/Home/Home'
-import Bicicletas from './pages/Bicicletas/Bicicletas'
+import RoutesComponent from './routes/Routes'
 
 function App() {
 
   const isAuthenticated = true
-  
-  function loginRedirect(componente) {
-    if (isAuthenticated) {
-      return <Navigate to='/' replace />
-    }
-
-    return componente
-  }
-
+  {/* Estrutura de tela quando está autenticado */}
   return (
     <>
       <Router>
-        <Routes>
-          <Route path='/login' element={loginRedirect(<Signin />)} />
-          <Route path='/cadastro' element={loginRedirect(<Signup />)} />          
+        {isAuthenticated ? 
+        (
+          
+          <div className='grid-container'>
+            <Header />
+            <Sidebar />
 
-
-          {isAuthenticated ?
-            (
-              <>
-                <Route path='/' Component={Home} />
-                <Route path='/bicicletas' Component={Bicicletas} />
-              </>
-            )
-            : (
-              <>
-                <Route path='*' element={<Navigate replace to='/login' />} />
-              </>              
-            )
-          }
-        </Routes>
-      </Router>
+            <RoutesComponent />
+          </div>
+        ) 
+        : (
+          <RoutesComponent />
+        )}
+      </Router>  
     </>
   )
 }
